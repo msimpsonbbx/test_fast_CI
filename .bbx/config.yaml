@@ -10,8 +10,8 @@ jobs:
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
-    - public/aarch64-xilinx-linux.zip
-    - public/xilinx-zynqmp-common-v2020.1.tar.gz
+    - aarch64-xilinx-linux.zip
+    - xilinx-zynqmp-common-v2020.1.tar.gz
   output:
    artifact:
     - Emulation-SW/build.sh
@@ -59,8 +59,8 @@ jobs:
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
-    - public/aarch64-xilinx-linux.zip
-    - public/xilinx-zynqmp-common-v2020.1.tar.gz
+    - aarch64-xilinx-linux.zip
+    - xilinx-zynqmp-common-v2020.1.tar.gz
   steps:
    - run:
       name: Download files
@@ -93,8 +93,8 @@ jobs:
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
-    - public/petalinux-aarch64-xilinx-linux.zip
-    - public/xilinx-zynqmp-common-v2020.1.tar.gz
+    - petalinux-aarch64-xilinx-linux.zip
+    - xilinx-zynqmp-common-v2020.1.tar.gz
   steps:
    - run:
       name: Build HW
