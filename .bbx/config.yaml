@@ -14,11 +14,14 @@ jobs:
     - xilinx-zynqmp-common-v2020.1.tar.gz
   output:
    artifact:
-    - Emulation-SW/build.sh
-    - sw_emu.sh
-    - Emulation-SW/launch.sh
-    - Emulation-SW/launch.expect
+    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-SW/build.sh
+    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/sw_emu.sh
+    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-SW/launch.sh
+    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-SW/launch.expect
   steps:
+   - run:
+      name: Copy project
+      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
    - run:
       name: Download files
       command: |
@@ -27,7 +30,9 @@ jobs:
       type: miscellaneous 
    - run:
       name: Run Software Emulation Build
-      command: Emulation-SW/build.sh
+      command: |
+       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
+       Emulation-SW/build.sh
       type: sw-emulation    
  test-sw-emulation:
   runner: AWS-runner
@@ -41,6 +46,9 @@ jobs:
     - xilinx_zcu104_base_202010_1.zip
   steps:
    - run:
+      name: Copy project
+      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
+   - run:
       name: Run Software Emulation
       command: ./sw_emu.sh 
    - run:
@@ -52,16 +60,19 @@ jobs:
    build: hw-emulation
   output:
    artifact:
-    - Emulation-HW/build.sh
-    - hw_emu.sh
-    - Emulation-HW/launch.sh
-    - Emulation-HW/launch.expect
+    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-HW/build.sh
+    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/hw_emu.sh
+    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-HW/launch.sh
+    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-HW/launch.expect
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
     - aarch64-xilinx-linux.zip
     - xilinx-zynqmp-common-v2020.1.tar.gz
   steps:
+   - run:
+      name: Copy project
+      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
    - run:
       name: Download files
       command: |
@@ -70,7 +81,9 @@ jobs:
       type: miscellaneous  
    - run:
       name: Run Hardware Emulation Build
-      command: Emulation-HW/build.sh
+      command: |
+       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
+       Emulation-HW/build.sh
       type: hw-emulation  
  test-hw-emulation:
   runner: AWS-runner
@@ -83,6 +96,9 @@ jobs:
     - build-HW-emu
     - xilinx_zcu104_base_202010_1.zip
   steps:
+   - run:
+      name: Copy project
+      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
    - run:
       name: Hardware Emulation
       command: ./hw_emu.sh 
@@ -97,8 +113,13 @@ jobs:
     - xilinx-zynqmp-common-v2020.1.tar.gz
   steps:
    - run:
+      name: Copy project
+      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
+   - run:
       name: Build HW
-      command: Hardware/build.sh
+      command: |
+       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
+       Hardware/build.sh
       type: Hardware 
 workflows:
  complete-build-test:
