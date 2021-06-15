@@ -50,7 +50,9 @@ jobs:
       command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
    - run:
       name: Run Software Emulation
-      command: ./sw_emu.sh 
+      command: |
+       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
+       ./sw_emu.sh 
    - run:
       name: Software Emulation
       command: echo "Running Software Emulation" 
@@ -101,7 +103,9 @@ jobs:
       command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
    - run:
       name: Hardware Emulation
-      command: ./hw_emu.sh 
+      command: |
+       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
+       ./hw_emu.sh 
  build-HW:
   runner: AWS-runner
   type:
