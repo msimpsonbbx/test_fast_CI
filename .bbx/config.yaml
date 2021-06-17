@@ -7,7 +7,7 @@ jobs:
   runner: AWS-runner
   type:
    build: software
-  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
@@ -36,7 +36,7 @@ jobs:
    - build-SW-emu
   type:
    test: sw-emulation
-  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
   input: 
    artifact: 
     - build-SW-emu
@@ -49,7 +49,7 @@ jobs:
   runner: AWS-runner
   type:
    build: hw-emulation
-  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
   output:
    artifact:
     - Emulation-HW/build.sh
@@ -78,7 +78,7 @@ jobs:
    - build-HW-emu
   type:
    test: hw-emulation
-  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
   input: 
    artifact: 
     - build-HW-emu
@@ -91,7 +91,7 @@ jobs:
   runner: AWS-runner
   type:
    build: hardware
-  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
