@@ -95,7 +95,7 @@ jobs:
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
-    - petalinux-aarch64-xilinx-linux.zip
+    - aarch64-xilinx-linux.zip
     - xilinx-zynqmp-common-v2020.1.tar.gz
   steps: 
    - run:
