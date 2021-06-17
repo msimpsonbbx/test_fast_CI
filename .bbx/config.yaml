@@ -7,6 +7,7 @@ jobs:
   runner: AWS-runner
   type:
    build: software
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
@@ -14,14 +15,11 @@ jobs:
     - xilinx-zynqmp-common-v2020.1.tar.gz
   output:
    artifact:
-    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-SW/build.sh
-    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/sw_emu.sh
-    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-SW/launch.sh
-    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-SW/launch.expect
+    - Emulation-SW/build.sh
+    - sw_emu.sh
+    - Emulation-SW/launch.sh
+    - launch.expect
   steps:
-   - run:
-      name: Copy project
-      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
    - run:
       name: Download files
       command: |
@@ -30,9 +28,7 @@ jobs:
       type: miscellaneous 
    - run:
       name: Run Software Emulation Build
-      command: |
-       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
-       Emulation-SW/build.sh
+      command: Emulation-SW/build.sh
       type: sw-emulation    
  test-sw-emulation:
   runner: AWS-runner
@@ -40,41 +36,32 @@ jobs:
    - build-SW-emu
   type:
    test: sw-emulation
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
   input: 
    artifact: 
     - build-SW-emu
     - xilinx_zcu104_base_202010_1.zip
   steps:
    - run:
-      name: Copy project
-      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
-   - run:
       name: Run Software Emulation
-      command: |
-       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
-       ./sw_emu.sh 
-   - run:
-      name: Software Emulation
-      command: echo "Running Software Emulation" 
+      command: ./sw_emu.sh  
  build-HW-emu:
   runner: AWS-runner
   type:
    build: hw-emulation
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
   output:
    artifact:
-    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-HW/build.sh
-    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/hw_emu.sh
-    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-HW/launch.sh
-    - /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI/Emulation-HW/launch.expect
+    - Emulation-HW/build.sh
+    - hw_emu.sh
+    - Emulation-HW/launch.sh
+    - launch.expect
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
     - aarch64-xilinx-linux.zip
     - xilinx-zynqmp-common-v2020.1.tar.gz
   steps:
-   - run:
-      name: Copy project
-      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
    - run:
       name: Download files
       command: |
@@ -83,9 +70,7 @@ jobs:
       type: miscellaneous  
    - run:
       name: Run Hardware Emulation Build
-      command: |
-       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
-       Emulation-HW/build.sh
+      command: Emulation-HW/build.sh
       type: hw-emulation  
  test-hw-emulation:
   runner: AWS-runner
@@ -93,37 +78,29 @@ jobs:
    - build-HW-emu
   type:
    test: hw-emulation
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
   input: 
    artifact: 
     - build-HW-emu
     - xilinx_zcu104_base_202010_1.zip
   steps:
    - run:
-      name: Copy project
-      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
-   - run:
       name: Hardware Emulation
-      command: |
-       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
-       ./hw_emu.sh 
+      command: ./hw_emu.sh 
  build-HW:
   runner: AWS-runner
   type:
    build: hardware
+  current_working_directory: /tools/Xilinx/Vitis/2020.1/workspace/vec 
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
     - petalinux-aarch64-xilinx-linux.zip
     - xilinx-zynqmp-common-v2020.1.tar.gz
-  steps:
-   - run:
-      name: Copy project
-      command: cp -r ~/ /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI 
+  steps: 
    - run:
       name: Build HW
-      command: |
-       cd /tools/Xilinx/Vitis/2020.1/workspace/test_fast_CI
-       Hardware/build.sh
+      command: Hardware/build.sh
       type: Hardware 
 workflows:
  complete-build-test:
