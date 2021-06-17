@@ -1,5 +1,6 @@
 #!/bin/bash -f
 source /tools/Xilinx/Vitis/2020.1/settings64.sh
+export LIBRARY_PATH=/usr/lib/x86_64-linux-gnu #Ubuntu
 cd Emulation-HW/package/
 killall -9 qemu-system-aarch64
 killall pllauncher
