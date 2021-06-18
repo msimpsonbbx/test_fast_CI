@@ -14,6 +14,7 @@ jobs:
     - hw_emu.sh
     - Emulation-HW/launch.sh
     - Emulation-HW/launch.expect
+    - Emulation-HW/package
   input: 
    artifact: 
     - xilinx_zcu104_base_202010_1.zip
