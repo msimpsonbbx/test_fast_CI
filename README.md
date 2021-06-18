@@ -52,9 +52,8 @@ Now we have verified our FAST locally, we will integrate it with BeetleboxCI. Us
 7. Fill in the details as shown below then click <code>Submit</code>. You will be presented with your personal github webhook and deploy key information.
 
 1. Leave this information open and head to your git repo. From here go to the project settings, then click <code>Webhooks</code> then click <code>Add webhook</code>. 
-2.  Copy the payload url from the CI to the github settings then change the content type to <code>application/json</code>, then copy over the secret from the ci to Github as shown below, then click <code>Add webhook</code>.
+2.  Copy the payload url from the CI to the github settings then change the content type to <code>application/json</code>, then copy over the secret from the ci to Github, then click <code>Add webhook</code>.
 
-![gitwebhook](/img/gitwebhook.png)
 1.  We should then see a green tick to say the git repo has connected correctly.
 2.  Now in the Github Settings, navigate to the <code>Deploy keys</code> and click <code>Add deploy keys</code>.
 3.  Title the deploy key <code>testci</code> and copy and paste the deploy key from the CI into the key input as shown below. Then click finish.
